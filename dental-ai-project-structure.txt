@@ -1,0 +1,35 @@
+dental_ai_project/
+├── README.md
+├── requirements.txt
+├── config.py
+├── main.py
+├── src/
+│   ├── __init__.py
+│   ├── ai_engine.py
+│   ├── report_generator.py
+│   ├── image_processor.py
+│   ├── crm_integration/
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── dentrix.py
+│   │   ├── eaglesoft.py
+│   │   └── open_dental.py
+│   └── utils.py
+├── ui/
+│   ├── __init__.py
+│   ├── app.py
+│   ├── components/
+│   │   ├── __init__.py
+│   │   ├── image_viewer.py
+│   │   ├── patient_form.py
+│   │   └── report_display.py
+│   └── pages/
+│       ├── __init__.py
+│       ├── analysis.py
+│       ├── history.py
+│       └── settings.py
+└── tests/
+    ├── __init__.py
+    ├── test_ai_engine.py
+    ├── test_image_processor.py
+    └── test_report_generator.py
