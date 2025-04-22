@@ -1,5 +1,5 @@
 # ... (most code unchanged)
-from src.pdf-generator import PDFGenerator
+from src.pdf_generator import PDFGenerator
 
 def display_analysis_results(results: Dict[str, Any]):
     st.subheader("Summary Report")
