@@ -107,7 +107,6 @@ def render_settings_page():
     with tabs[7]:
         st.subheader("🤖 Advanced AI Settings")
         ai = st.session_state["ai_settings"]
-        ai["model"] = st.selectbox("OpenAI Model", ["gpt-4", "gpt-3.5-turbo"], index=["gpt-4", "gpt-3.5-turbo"].index(ai.get("model", "gpt-4")))
         ai["temperature"] = st.slider("AI Temperature (creativity)", 0.0, 1.0, float(ai.get("temperature", 0.4)))
         ai["max_tokens"] = st.number_input("Max Tokens (response length)", min_value=100, max_value=3000, value=int(ai.get("max_tokens", 1024)))
         st.session_state["ai_settings"] = ai

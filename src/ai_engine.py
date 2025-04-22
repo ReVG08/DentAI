@@ -24,7 +24,7 @@ class DentalAIEngine:
         Initialize the AI engine with API credentials and configuration.
         """
         self.api_key = api_key or config.OPENAI_API_KEY
-        self.model = model or getattr(config, "VISION_MODEL", "gpt-4-vision-preview")
+        self.model = model or getattr(config, "gpt-4o")
         self.temperature = temperature
         self.max_tokens = max_tokens
         self.client = OpenAI(api_key=self.api_key)
