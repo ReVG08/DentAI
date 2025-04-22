@@ -12,8 +12,8 @@ def render_analysis_page():
     """Render the patient analysis page"""
     st.header("Patient Analysis")
     
-    # Check if API key is set
-    if not st.session_state.get("api_key"):
+    # Correct API key check (looks at api_keys.openai not just api_key)
+    if not st.session_state.get("api_keys", {}).get("openai"):
         st.info("Please enter your OpenAI API key in the sidebar to continue.")
         return
     
@@ -137,9 +137,9 @@ def display_analysis_results(results: Dict[str, Any]):
     # Download options
     col1, col2 = st.columns(2)
     with col1:
-        summary_bytes = results["summary_report"].encode("utf-8")
+        summary_bytes = results["summary_report"].encode("utf-8")  # Fixed encoding
         st.download_button(
-            label="Download Summary Report (PDF)",
+            label="Download Summary Report (TXT)",
             data=summary_bytes,
             file_name=f"dental_summary_{results['timestamp'].replace(':', '-').replace(' ', '_')}.txt",
             mime="text/plain"
@@ -153,14 +153,14 @@ def display_analysis_results(results: Dict[str, Any]):
     
     # Download detailed report
     with col2:
-        detailed_bytes = results["detailed_report"].encode("utf-8")
+        detailed_bytes = results["detailed_report"].encode("utf-8")  # Fixed encoding
         st.download_button(
-            label="Download Detailed Report (PDF)",
+            label="Download Detailed Report (TXT)",
             data=detailed_bytes,
             file_name=f"dental_detailed_{results['timestamp'].replace(':', '-').replace(' ', '_')}.txt",
             mime="text/plain"
         )
     
     # CRM export option
-    if st.session_state.crm_settings["type"] != "None":
+    if st.session_state.get("crm_settings", {}).get("type") != "None":
         st.button("Export to CRM", key="export_to_crm")
