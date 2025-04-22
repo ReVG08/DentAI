@@ -7,7 +7,7 @@ load_dotenv()
 # API configuration
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 VISION_MODEL = os.getenv("gpt-4o")
-COMPLETION_MODEL = os.getenv("gpt-4")
+COMPLETION_MODEL = os.getenv("gpt-4o")
 
 # Application settings
 APP_NAME = os.getenv("APP_NAME", "Dental AI Diagnostic Assistant")
