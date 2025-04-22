@@ -64,7 +64,7 @@ class DentalAIWebApp:
         )
         
         # Header
-        st.title("🦷 DentAI by Renato Gloe")
+        st.title("🦷 DentAI by Renato Gloe (preview)")
         
         # Sidebar with API key input
         with st.sidebar:
