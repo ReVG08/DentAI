@@ -62,7 +62,7 @@ class ReportGenerator:
     
     def generate_summary_report(self, analysis: str, patient_info: Dict[str, Any]) -> str:
         """
-        Generate a concise report for the doctor to review and sign
+        Generate a concise report for the doctor to review and sign. Add the key findings and a single potential and most likely diagnostic. For this one do not suggest a doctor.
         
         Args:
             analysis: Raw analysis from the vision model

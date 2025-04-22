@@ -61,7 +61,7 @@ class DentalAIEngine:
                 - Impacted teeth
                 - Other abnormalities
                 
-                Provide a detailed analysis of what you see in these images. Do not suggest a consultation with a dentist, as this platform is to speed up a dentist's consulting by pre-diagnosing."""
+                Provide a detailed analysis of what you see in these images. """
             }
         ]
         
