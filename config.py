@@ -1,17 +1,17 @@
 import os
 from dotenv import load_dotenv
 
-# Load environment variables from .env file if present
+# Load environment variables from .env file
 load_dotenv()
 
 # API configuration
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
-VISION_MODEL = os.getenv("VISION_MODEL", "gpt-4o")
-COMPLETION_MODEL = os.getenv("COMPLETION_MODEL", "gpt-4o")
+VISION_MODEL = "gpt-4o"
+COMPLETION_MODEL = "gpt-4"
 
 # Application settings
-APP_NAME = os.getenv("APP_NAME", "Dental AI Diagnostic Assistant")
-DEBUG = os.getenv("DEBUG", "False").strip().lower() == "true"
+APP_NAME = "Dental AI Diagnostic Assistant"
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 # CRM Integration settings
 DEFAULT_CRM = os.getenv("DEFAULT_CRM", "None")
@@ -20,5 +20,5 @@ CRM_USERNAME = os.getenv("CRM_USERNAME", "")
 CRM_PASSWORD = os.getenv("CRM_PASSWORD", "")
 
 # Image processing settings
-MAX_IMAGE_SIZE = tuple(map(int, os.getenv("MAX_IMAGE_SIZE", "1024,1024").split(',')))
-SUPPORTED_FORMATS = [fmt.strip().lower() for fmt in os.getenv("SUPPORTED_FORMATS", "jpg,jpeg,png").split(",")]
+MAX_IMAGE_SIZE = (1024, 1024)  # Resize large images to this maximum size
+SUPPORTED_FORMATS = ["jpg", "jpeg", "png"]
