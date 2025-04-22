@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fake Dental Patient Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(135deg, #e0ecfc 0%, #f9f9f9 100%);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 480px;
+      margin: 60px auto 24px auto;
+      background: #ffffffcc;
+      border-radius: 22px;
+      box-shadow: 0 8px 32px #1f26875a;
+      padding: 40px 32px 32px 32px;
+      backdrop-filter: blur(5px);
+      border: 1px solid #f3f7fc;
+    }
+    h1 {
+      text-align: center;
+      color: #0058b0;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 1.05em;
+      color: #63748b;
+      margin-bottom: 20px;
+    }
+    .patient-info {
+      margin: 32px 0 20px 0;
+      font-size: 1.07em;
+    }
+    .label {
+      font-weight: 700;
+      color: #0058b0;
+      width: 180px;
+      display: inline-block;
+    }
+    .patient-row {
+      margin-bottom: 10px;
+    }
+    ul.history-list {
+      margin: 8px 0 0 0;
+      padding-left: 22px;
+      color: #35507a;
+    }
+    button {
+      background: linear-gradient(90deg, #0058b0 0%, #50b1f8 100%);
+      color: #fff;
+      border: none;
+      padding: 13px 36px;
+      border-radius: 24px;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #0058b055;
+      transition: background 0.2s;
+      margin-top: 20px;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #357ae8 0%, #6fc6f5 100%);
+    }
+    .credits {
+      text-align: center;
+      font-size: 1em;
+      color: #7b8ba5;
+      margin-top: 40px;
+      margin-bottom: 8px;
+      letter-spacing: 0.1em;
+    }
+    .tip {
+      margin-top: 20px;
+      color: #a05400;
+      background: #fff9e5;
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1px solid #ffecb0;
+      font-size: 1em;
+      text-align: center;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Fake Dental Patient Generator</h1>
+    <div class="subtitle">
+      Instantly generate a random dental patient for testing or demo purposes.
+    </div>
+    <div class="patient-info" id="patient-info">
+      <div class="patient-row"><span class="label">Name:</span> <span id="name">-</span></div>
+      <div class="patient-row"><span class="label">Age:</span> <span id="age">-</span></div>
+      <div class="patient-row"><span class="label">Dental History:</span>
+        <ul class="history-list" id="medical-history">
+          <li>-</li>
+        </ul>
+      </div>
+    </div>
+    <div style="text-align: center;">
+      <button onclick="generatePatient()">Generate Patient</button>
+    </div>
+    <div class="tip">
+      <b>Tip:</b> For more realism, set the patient's initial complaint based on the image used in the AI.<br>
+      For example, if the image shows a missing tooth, their complaint could be "I'm here because I lost a tooth yesterday."
+      Set gender based on name.
+    </div>
+  </div>
+  <div class="credits">
+    Made for testing &ndash; Credits: Renato Gloe
+  </div>
+  <script>
+    const firstNames = [
+      "Emma", "Liam", "Olivia", "Noah", "Ava", "Elijah", "Sophia", "William",
+      "James", "Isabella", "Benjamin", "Mia", "Lucas", "Charlotte", "Henry", "Amelia"
+    ];
+    const lastNames = [
+      "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis",
+      "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas"
+    ];
+    const dentalConditions = [
+      "Dental Caries (Cavities)", "Gingivitis", "Periodontitis", "Tooth Sensitivity",
+      "Bruxism (Teeth Grinding)", "Impacted Wisdom Teeth", "Malocclusion", "Tooth Erosion",
+      "Dental Abscess", "Pulpitis", "Halitosis (Bad Breath)", "Enamel Hypoplasia",
+      "Oral Lichen Planus", "Aphthous Ulcers (Canker Sores)", "Temporomandibular Joint Disorder (TMJ)",
+      "Dry Mouth (Xerostomia)", "Dental Fluorosis", "Pericoronitis", "Tooth Fracture", "Retained Deciduous Teeth"
+    ];
+
+    function randomItem(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function randomAge(min = 1, max = 50) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function randomDentalHistory() {
+      const count = Math.floor(Math.random() * 3) + 1; // 1-3 conditions
+      const shuffled = [...dentalConditions].sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, count);
+    }
+
+    function generatePatient() {
+      const name = `${randomItem(firstNames)} ${randomItem(lastNames)}`;
+      const age = randomAge(1, 50);
+      const history = randomDentalHistory();
+
+      document.getElementById('name').textContent = name;
+      document.getElementById('age').textContent = age;
+      const historyList = document.getElementById('medical-history');
+      historyList.innerHTML = '';
+      history.forEach(cond => {
+        const li = document.createElement('li');
+        li.textContent = cond;
+        historyList.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
