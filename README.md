@@ -21,3 +21,6 @@ Production-ready FastAPI app with admin-only account creation, static web pages,
 - Home, About Us, Contact a Salesperson (form)
 - Login page (admin creates accounts)
 - Admin panel (account management)
+
+## Credits
+- Renato Vincoleto Gloe is the primary developer of this project, creating an innovative AI-powered application for dental image analysis. Leveraging Python, Open AI’s API, and Streamlit, Renato built a solution that processes dental images to provide actionable insights for professionals. 
