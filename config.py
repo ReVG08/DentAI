@@ -6,7 +6,7 @@ load_dotenv()
 
 # API configuration
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
-VISION_MODEL = os.getenv("VISION_MODEL", "gpt-4o")
+VISION_MODEL = os.getenv("gpt-4o")
 COMPLETION_MODEL = os.getenv("gpt-4")
 
 # Application settings
