@@ -137,9 +137,9 @@ def display_analysis_results(results: Dict[str, Any]):
     # Download options
     col1, col2 = st.columns(2)
     with col1:
-        summary_bytes = results["summary_report"].encode("utf-8")  # Fixed encoding
+        summary_bytes = results["summary_report"].encode("utf-8")
         st.download_button(
-            label="Download Summary Report (TXT)",
+            label="Download Summary Report (PDF)",
             data=summary_bytes,
             file_name=f"dental_summary_{results['timestamp'].replace(':', '-').replace(' ', '_')}.txt",
             mime="text/plain"
@@ -153,9 +153,9 @@ def display_analysis_results(results: Dict[str, Any]):
     
     # Download detailed report
     with col2:
-        detailed_bytes = results["detailed_report"].encode("utf-8")  # Fixed encoding
+        detailed_bytes = results["detailed_report"].encode("utf-8")
         st.download_button(
-            label="Download Detailed Report (TXT)",
+            label="Download Detailed Report (PDF)",
             data=detailed_bytes,
             file_name=f"dental_detailed_{results['timestamp'].replace(':', '-').replace(' ', '_')}.txt",
             mime="text/plain"
