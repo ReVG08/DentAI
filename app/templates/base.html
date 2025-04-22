@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Dental AI{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+<nav>
+    <a href="/">Home</a>
+    <a href="/about">About Us</a>
+    <a href="/contact">Contact</a>
+    {% if request.session.get('user_id') %}
+        <a href="/logout">Logout</a>
+        {% if request.state.user and request.state.user.is_admin %}
+            <a href="/admin">Admin</a>
+        {% endif %}
+        {% if request.state.user and request.state.user.user_type == "dentist" %}
+            <a href="/dentist">Dentist Portal</a>
+        {% endif %}
+    {% else %}
+        <a href="/login">Login</a>
+    {% endif %}
+</nav>
+<main>
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

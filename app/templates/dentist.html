@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Dentist Portal - Dental AI{% endblock %}
+{% block content %}
+<h1>Dentist Portal</h1>
+<h2>Run a New Analysis</h2>
+<form method="post" action="/dentist/analyze" enctype="multipart/form-data">
+    <label>Patient Name: <input type="text" name="patient_name" required></label>
+    <label>Age: <input type="number" name="patient_age" required></label>
+    <label>Gender: <input type="text" name="patient_gender" required></label>
+    <label>Primary Complaint: <input type="text" name="patient_complaint" required></label>
+    <label>Medical History:<br><textarea name="patient_medical_history" required></textarea></label>
+    <label>Upload X-ray/Image: <input type="file" name="file" required></label>
+    <button type="submit">Analyze</button>
+</form>
+<h2>Previous Analyses</h2>
+<ul>
+    {% for a in analyses %}
+    <li>
+        <b>{{ a.patient_name }}</b> - {{ a.timestamp }}<br>
+        Result: {{ a.analysis_result }}
+        <br>
+        <a href="/static/uploads/{{ a.uploaded_filename }}">View Image</a>
+        <a href="/dentist/report/{{ a.id }}">Download PDF Report</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

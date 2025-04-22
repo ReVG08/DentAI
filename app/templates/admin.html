@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Admin Panel - Dental AI{% endblock %}
+{% block content %}
+<h1>Admin Panel</h1>
+<h2>Create New User</h2>
+<form method="post" action="/admin/create_user">
+    <label>Username: <input type="text" name="username" required></label>
+    <label>Password: <input type="password" name="password" required></label>
+    <label>User Type:
+        <select name="user_type">
+            <option value="dentist">Dentist</option>
+            <option value="admin">Admin</option>
+        </select>
+    </label>
+    <button type="submit">Create User</button>
+</form>
+
+<h2>Current Users</h2>
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Type</th>
+        <th>Bind API Key</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ user.user_type }}</td>
+        <td>
+            <form method="post" action="/admin/bind_api_key" style="display:inline;">
+                <input type="hidden" name="user_id" value="{{ user.id }}">
+                <input type="text" name="api_key" placeholder="API Key" value="{{ user.openai_api_key or '' }}">
+                <button type="submit">Set</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

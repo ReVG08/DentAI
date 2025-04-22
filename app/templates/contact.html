@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Contact a Salesperson - Dental AI{% endblock %}
+{% block content %}
+<h1>Contact a Salesperson</h1>
+<form method="post">
+    <label>Email: <input type="email" name="email" required></label><br>
+    <label>Message:<br><textarea name="message" required></textarea></label><br>
+    <button type="submit">Send</button>
+</form>
+{% endblock %}
